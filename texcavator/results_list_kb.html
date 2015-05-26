@@ -1,0 +1,33 @@
+<ul>
+<% _.each(hits, function(hit){ %>
+    <li>
+        <%
+          var title;
+          if ('highlight' in hit && 'title' in hit.highlight) {
+            title = hit.highlight.title[0];
+          } else if (hit.fields.article_dc_title[0]) {
+            title = hit.fields.article_dc_title;
+          } else {
+            title = '(untitled article)';
+          }
+
+          // Bypass the KB resolver and go straight to Delpher.
+          var re = /http:\/\/resolver\.kb\.nl\/resolve\?urn=([^&]*)/;
+          var url = hit.fields.article_dc_identifier_resolver;
+          var match = re.exec(url);
+          if (match) {
+            url = ('http://www.delpher.nl/nl/kranten/view?coll=ddd&identifier='
+                   + match[1] + '&query=' + encodeURIComponent(query));
+          }
+        %>
+        <h2><a href="<%= url %>" target="_blank"><%= title %></a></h2>
+        <% if ('paper_dc_title' in hit.fields){ %><h3><%= hit.fields['paper_dc_title'] %></h3><% } %>
+        <%
+            var format = d3.time.format('%a %b %-e, %Y');
+            var date = format(new Date(hit.fields.paper_dc_date));
+        %>
+        <div class="date"><%= date %></div>
+        <div class="highlight"><%= hit.highlight.text_content %></div>
+    </li>
+<% }); %>
+</ul>
