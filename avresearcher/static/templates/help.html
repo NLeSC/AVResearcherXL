@@ -162,11 +162,12 @@
       <p>The ‘most descriptive terms’ are generated as follows: all punctuation
         marks are removed, all capital letters are removed (which means that
         differences in meaning between words with capital and without capital
-        are also erased). It displays the most unique words for each document.
-        This method implies that words which contain spelling-mistakes (such as
-        OCR-mistakes in the newspaper scans or speech-recognition mistakes in
-        the subtitles) will often be considered as unique for the document and,
-        hence, might appear in the word cloud.</p>
+        are also erased).
+        Then, terms are selected for display in the word cloud that are
+        "<a href="https://www.elastic.co/blog/significant-terms-aggregation">uncommonly common</a>"
+        in the documents matching the query,
+        meaning that they must be uncommon in the collection as a whole,
+        but much more common among the query's hits.</p>
 
       <p>The word cloud also functions as filter for your query. Once you
         select a term in the wordcloud, the term will be added to your query.
