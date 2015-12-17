@@ -29,6 +29,7 @@
             var date = format(new Date(hit.fields.paper_dc_date));
         %>
         <div class="date"><%= date %></div>
+        <div class="highlight"><%= hit.highlight.text_content %></div>
     </li>
 <% }); %>
 </ul>
