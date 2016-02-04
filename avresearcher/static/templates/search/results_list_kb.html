@@ -15,7 +15,7 @@
           // the KB resolver add noticeable latency, it also doesn't allow us
           // to send the query string along.
           var re = /http:\/\/resolver\.kb\.nl\/resolve\?urn=([^&]*)/;
-          var url = hit.fields.source;
+          var url = hit.fields.article_dc_identifier_resolver;
           var match = re.exec(url);
           if (match) {
             url = ('http://www.delpher.nl/nl/kranten/view?coll=ddd&identifier='
