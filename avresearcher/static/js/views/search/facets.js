@@ -50,7 +50,7 @@ function($, _, Backbone, d3, app, CloudView, BarChartView, facetsTemplate){
             _.each(COLLECTIONS_CONFIG[collection].enabled_facets, function(facet){
                 var agg_specs = COLLECTIONS_CONFIG[collection].available_aggregations[facet];
                 tabs[facet] = {
-                    //name: agg_specs.name,
+                    name: agg_specs.name,
                     description: agg_specs.description
                 };
             });
