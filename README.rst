@@ -100,6 +100,18 @@ out how.
    $ pip install gunicorn
    $ gunicorn --bind 0.0.0.0 -w 4 wsgi:app
 
+Here's a template for ``/etc/httpd/conf.d/avresearcherxl.conf`` (Apache)::
+
+    <VirtualHost *:80>
+      ServerName your.server.name
+
+      ProxyRequests Off
+      ProxyVia Off
+
+      ProxyPass / http://127.0.0.1:8000/
+      ProxyPassReverse / http://127.0.0.1:8000/
+    </VirtualHost>
+
 
 Running the text analysis tasks
 -------------------------------
@@ -153,7 +165,7 @@ License
 -------
 
 Copyright 2014 Dispectu B.V.
-Parts copyright 2015 Netherlands eScience Center.
+Parts copyright 2015-2016 Netherlands eScience Center.
 
 AVResearcherXL is distributed under the terms of the Apache 2.0 License
 (see the file ``LICENSE``).
