@@ -363,14 +363,22 @@ function($, _, Backbone, app){
             // see http://stackoverflow.com/a/12390273/961381 for more info
             var filters = _.clone(this.get('filters'));
             
-            // Add filter defenitions to the filters object, if the filter
-            // defentions does not yet exist
+            // Add filter definitions to the filters object, if the filter
+            // definitions do not yet exist.
             if (!(aggregation in filters)) {
                 // Aggregation of terms
                 if ('terms' in aggregation_config) {
                     filters[aggregation] = {
                         filter_type: 'terms',
                         field: aggregation_config.terms.field,
+                        values: []
+                    };
+                }
+                // Aggregation of significant terms (almost like terms)
+                else if ('significant_terms' in aggregation_config) {
+                    filters[aggregation] = {
+                        filter_type: 'terms',
+                        field: aggregation_config.significant_terms.field,
                         values: []
                     };
                 }
